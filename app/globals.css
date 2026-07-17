@@ -5,87 +5,87 @@
 }
 
 html {
-  font-size: 16px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #0f0f0f;
+  color: #e0e0e0;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  min-height: 100vh;
-  color: #333;
+/* Variáveis de cor para tema escuro */
+:root {
+  --bg-primary: #0f0f0f;
+  --bg-secondary: #1a1a1a;
+  --bg-tertiary: #252525;
+  --text-primary: #e0e0e0;
+  --text-secondary: #b0b0b0;
+  --text-tertiary: #808080;
+  --border-color: #333333;
+  --accent-primary: #3b82f6;
+  --accent-secondary: #10b981;
+  --accent-danger: #ef4444;
+  --accent-warning: #f59e0b;
+  --accent-info: #06b6d4;
 }
 
-.container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-h1, h2, h3 {
-  color: #2d3748;
-  margin-bottom: 16px;
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
 }
 
 button {
-  padding: 10px 20px;
+  font-family: inherit;
+  cursor: pointer;
   border: none;
-  border-radius: 6px;
-  background: #667eea;
-  color: white;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
-  transition: all 0.3s ease;
+  background: none;
+  padding: 0;
 }
 
-button:hover {
-  background: #5568d3;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+input, select, textarea {
+  font-family: inherit;
+  color: inherit;
 }
 
-button:disabled {
-  background: #cbd5e0;
-  cursor: not-allowed;
-  transform: none;
+/* Animações */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-input[type="file"] {
-  padding: 8px;
-  border: 2px solid #e2e8f0;
-  border-radius: 6px;
-  cursor: pointer;
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
-input[type="file"]:hover {
-  border-color: #667eea;
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
 }
 
-thead {
-  background: #f7fafc;
-}
-
-th, td {
-  padding: 12px;
-  text-align: left;
-  border-bottom: 1px solid #e2e8f0;
-}
-
-th {
-  font-weight: 600;
-  color: #2d3748;
-}
-
-tr:hover {
-  background: #f7fafc;
+.animate-slide-in {
+  animation: slideInLeft 0.3s ease-out;
 }

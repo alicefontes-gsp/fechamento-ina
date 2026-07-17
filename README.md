@@ -1,63 +1,128 @@
-# Dashboard Fechamento Mensal - Inadimplência Acumulada
+# Dashboard de Inadimplência - Great Schools
 
-Dashboard interativo para visualizar e gerenciar dados de inadimplência mensal.
+Dashboard profissional para acompanhamento mensal de inadimplência das unidades Great Schools.
 
-## 🚀 Features
+## 🎯 Características
 
-- 📊 Gráficos interativos (pizzas, barras, linhas)
-- 📋 Tabelas dinâmicas com dados
-- 📁 Upload de arquivos Excel (.xlsx)
-- 📈 Visualização de tendências e métricas
-- 🎨 Interface responsiva e moderna
+- 📊 **Layout Escuro Moderno**: Interface profissional com tema escuro
+- 🎛️ **Menu por Unidade**: Navegação fácil entre 13 unidades diferentes
+- 📈 **Gráfico de Evolução**: Visualize tendências de inadimplência mensal
+- 🥧 **Composição por Serviço**: Análise de distribuição de débitos por tipo de serviço
+- 🏆 **Ranking de Criticidade**: Tabela com top devedores e nível de risco
+- 💾 **Dados Estruturados**: Arquivo separado para facilitar atualização mensal
+- 📱 **Responsivo**: Funciona perfeitamente em desktop, tablet e mobile
 
-## 🛠️ Tech Stack
+## 🏢 Unidades Monitoradas
 
-- **Frontend**: Next.js 14 + React 18 + TypeScript
-- **Gráficos**: Chart.js + react-chartjs-2
-- **Excel**: XLSX (xlsx library)
-- **Estilização**: CSS Modules
+- Great Schools
+- Santo Anjo
+- CCPA
+- CJA
+- Marupiara
+- OBJ-Conselheiro
+- OBJ-Ponta da Praia
+- OBJ-Embaré
+- OBJ-São Vicente
+- OBJ-Guarujá
+- OBJ-SJC
+- OBJ-Praia Grande
 
-## 📦 Instalação
+## 🚀 Começando
+
+### Instalação
 
 ```bash
-# Instalar dependências
+# Clone o repositório
+git clone https://github.com/alicefontes-gsp/fechamento-ina.git
+cd fechamento-ina
+
+# Instale as dependências
 npm install
 
-# Rodar em desenvolvimento
+# Execute em modo de desenvolvimento
 npm run dev
+```
 
-# Build para produção
+Acesse http://localhost:3000
+
+### Build para Produção
+
+```bash
 npm run build
 npm start
 ```
 
-Acesse: http://localhost:3000
+## 📊 Estrutura de Dados
 
-## 📁 Estrutura do Projeto
+Os dados estão organizados em `/data/dashboardData.ts` com a seguinte estrutura:
 
+```typescript
+{
+  month: string          // "Junho"
+  year: number          // 2026
+  units: Unit[]         // Lista de unidades
+  unitMetrics: Record   // Métricas por unidade
+  monthlyEvolution: []  // Evolução mês a mês
+  services: Record      // Composição por serviço
+  debtors: Debtor[]     // Ranking de devedores
+}
 ```
-/app              - Páginas Next.js (App Router)
-/components       - Componentes reutilizáveis
-/lib              - Utilitários e helpers
-/public           - Arquivos estáticos
+
+## 🔄 Como Atualizar os Dados
+
+1. Abra `/data/dashboardData.ts`
+2. Atualize o `month` e `year`
+3. Modifique os valores em `unitMetrics`
+4. Adicione novo mês em `monthlyEvolution`
+5. Atualize `services` e `debtors`
+6. Salve e faça deploy
+
+Exemplo de novo mês:
+
+```typescript
+monthlyEvolution: [
+  // ... meses anteriores
+  { month: "Julho", total: 512000, paid: 340000, pending: 172000 },
+]
 ```
 
-## 📊 Como usar
+## 🎨 Tema Escuro
 
-1. Acesse a página principal
-2. Clique em "Upload Excel" ou selecione um arquivo
-3. Visualize os gráficos e tabelas automaticamente
-4. Interaja com os dados
+O dashboard usa um tema escuro profissional com cores:
 
-## 📝 Formato do Excel
+- **Primária**: #3b82f6 (Azul)
+- **Secundária**: #10b981 (Verde)
+- **Alerta**: #f59e0b (Amarelo)
+- **Crítico**: #ef4444 (Vermelho)
 
-Esperado:
+## 📱 Responsividade
 
-| Mês | Devedor | Valor | Categoria | Status |
-|-----|---------|-------|-----------|--------|
-| Jan | João Silva | 1500 | A Receber | Pendente |
-| Jan | Maria Santos | 2000 | A Receber | Pago |
+Dashboard otimizado para:
+- 📺 Desktop (1920px+)
+- 💻 Laptop (1024px - 1920px)
+- 📱 Tablet (768px - 1024px)
+- 📲 Mobile (320px - 768px)
 
-## 📄 Licença
+## 🚀 Deploy
 
-Privado
+### Vercel (Recomendado)
+
+```bash
+# Conecte seu GitHub
+# Selecione o repositório
+# Deploy automático
+```
+
+Acesse: https://projeto-ina-site.vercel.app
+
+## 📝 Licença
+
+Privado - Great Schools
+
+## 💬 Suporte
+
+Para dúvidas ou sugestões, entre em contato.
+
+---
+
+**Desenvolvido com ❤️ para Great Schools**

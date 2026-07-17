@@ -1,0 +1,33 @@
+.container {
+  background: linear-gradient(135deg, #252525 0%, #1f1f1f 100%);
+  border: 1px solid #333333;
+  border-radius: 12px;
+  padding: 24px;
+  transition: all 0.3s ease;
+}
+
+.container:hover {
+  border-color: #404040;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.header {
+  margin-bottom: 20px;
+}
+
+.header h2 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  color: #e0e0e0;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 16px;
+  }
+
+  .header h2 {
+    font-size: 14px;
+  }
+}

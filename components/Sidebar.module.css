@@ -1,0 +1,118 @@
+.sidebar {
+  width: 280px;
+  background: linear-gradient(180deg, #1a1a1a 0%, #151515 100%);
+  border-right: 1px solid #333333;
+  padding: 24px 0;
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+
+.title {
+  padding: 0 20px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #808080;
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.navItem {
+  padding: 12px 20px;
+  text-align: left;
+  background: transparent;
+  border: none;
+  color: #b0b0b0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.navItem:hover {
+  background: rgba(59, 130, 246, 0.05);
+  color: #e0e0e0;
+  border-left-color: rgba(59, 130, 246, 0.3);
+}
+
+.navItem.active {
+  background: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+  border-left-color: #3b82f6;
+}
+
+.itemName {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.itemFullName {
+  font-size: 11px;
+  color: #808080;
+}
+
+.navItem.active .itemFullName {
+  color: #3b82f6;
+}
+
+/* Scrollbar customizado */
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: #404040;
+  border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: #505050;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #333333;
+    padding: 16px 0;
+    overflow-x: auto;
+    max-height: 100px;
+  }
+
+  .nav {
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 0 16px;
+    gap: 8px;
+  }
+
+  .navItem {
+    padding: 8px 12px;
+    white-space: nowrap;
+    border-left: none;
+    border-bottom: 3px solid transparent;
+  }
+
+  .navItem:hover {
+    border-bottom-color: rgba(59, 130, 246, 0.3);
+  }
+
+  .navItem.active {
+    border-bottom-color: #3b82f6;
+  }
+
+  .itemFullName {
+    display: none;
+  }
+}
