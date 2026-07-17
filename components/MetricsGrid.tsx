@@ -9,83 +9,77 @@ interface MetricsGridProps {
   selectedUnit: string
 }
 
+function formatCurrency(value: number) {
+  return `R$ ${value.toLocaleString("pt-BR", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })}`
+}
+
+function formatPercent(value: number) {
+  return `${value.toLocaleString("pt-BR", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })}%`
+}
+
+function formatPp(value: number) {
+  const sign = value > 0 ? "+" : ""
+  return `${sign}${value.toLocaleString("pt-BR", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })} p.p.`
+}
+
 export default function MetricsGrid({ selectedUnit }: MetricsGridProps) {
-  const metrics = useMemo(() => {
-    const unitData = dashboardData.unitMetrics[selectedUnit]
-
-    if (!unitData) return null
-
-    const paymentRate = unitData.totalDebt
-      ? ((unitData.paidAmount / unitData.totalDebt) * 100).toFixed(1)
-      : "0"
-
-    return {
-      totalDebt: unitData.totalDebt,
-      paidAmount: unitData.paidAmount,
-      pendingAmount: unitData.pendingAmount,
-      debtors: unitData.debtors,
-      averageDebt: unitData.averageDebt,
-      paymentRate: parseFloat(paymentRate),
-      riskLevel: unitData.riskLevel,
-    }
-  }, [selectedUnit])
+  const metrics = useMemo(() => dashboardData.unitMetrics[selectedUnit], [selectedUnit])
 
   if (!metrics) return null
+
+  const reachedGoal = metrics.distancePp <= 0
 
   return (
     <div className={styles.metricsGrid}>
       <MetricCard
-        title="Débito Total"
-        value={`R$ ${metrics.totalDebt.toLocaleString("pt-BR", {
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2,
-        })}`}
-        change={-2.3}
+        title="INA atual"
+        value={formatPercent(metrics.inaPercent)}
+        detail={`Meta: ${formatPercent(metrics.metaPercent)}`}
+        icon="📊"
+        accent={reachedGoal ? "secondary" : "danger"}
+      />
+      <MetricCard
+        title="Distância da meta"
+        value={formatPp(metrics.distancePp)}
+        detail={reachedGoal ? "Meta atingida" : "Acima da meta"}
+        icon={reachedGoal ? "🟢" : "🔴"}
+        accent={reachedGoal ? "secondary" : "warning"}
+      />
+      <MetricCard
+        title="Inadimplência em R$"
+        value={formatCurrency(metrics.inadimplencia)}
+        detail="Valor acumulado"
         icon="💰"
         accent="primary"
       />
       <MetricCard
-        title="Valor Recebido"
-        value={`R$ ${metrics.paidAmount.toLocaleString("pt-BR", {
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2,
-        })}`}
-        change={5.7}
-        icon="✓"
-        accent="secondary"
-      />
-      <MetricCard
-        title="Pendente"
-        value={`R$ ${metrics.pendingAmount.toLocaleString("pt-BR", {
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2,
-        })}`}
-        change={-3.1}
-        icon="⚠"
-        accent="warning"
-      />
-      <MetricCard
-        title="Taxa de Pagamento"
-        value={`${metrics.paymentRate}%`}
-        change={2.4}
-        icon="📊"
+        title="Faturamento acumulado"
+        value={formatCurrency(metrics.faturamento)}
+        detail="Jan a Jun/2026"
+        icon="📈"
         accent="info"
       />
       <MetricCard
-        title="Total de Devedores"
-        value={metrics.debtors.toString()}
-        change={-1}
+        title="QT. RF"
+        value={metrics.rfCount.toLocaleString("pt-BR")}
+        detail="Responsáveis financeiros"
         icon="👥"
         accent="primary"
       />
       <MetricCard
-        title="Débito Médio"
-        value={`R$ ${metrics.averageDebt.toLocaleString("pt-BR", {
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2,
-        })}`}
-        change={0.8}
-        icon="📈"
+        title="Maior composição"
+        value={metrics.mainService}
+        detail="Tipo de serviço"
+        icon="🎯"
         accent="secondary"
       />
     </div>

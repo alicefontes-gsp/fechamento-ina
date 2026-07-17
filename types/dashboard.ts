@@ -6,9 +6,8 @@ export interface Unit {
 
 export interface MonthlyData {
   month: string
-  total: number
-  paid: number
-  pending: number
+  ina: number
+  meta: number
 }
 
 export interface ServiceData {
@@ -17,32 +16,36 @@ export interface ServiceData {
   percentage: number
 }
 
-export interface Debtor {
+export interface UnitMetric {
+  faturamento: number
+  inadimplencia: number
+  inaPercent: number
+  metaPercent: number
+  distancePp: number
+  distanceAmount: number
+  rfCount: number
+  mainService: string
+  riskLevel: "critical" | "high" | "medium" | "low"
+}
+
+export interface CriticalityItem {
   id: string
-  name: string
   unit: string
-  amount: number
-  daysOverdue: number
+  inaPercent: number
+  metaPercent: number
+  distancePp: number
+  distanceAmount: number
+  inadimplencia: number
   risk: "critical" | "high" | "medium" | "low"
-  service: string
+  mainService: string
 }
 
 export interface DashboardData {
   month: string
   year: number
   units: Unit[]
-  unitMetrics: Record<
-    string,
-    {
-      totalDebt: number
-      paidAmount: number
-      pendingAmount: number
-      debtors: number
-      averageDebt: number
-      riskLevel: "critical" | "high" | "medium" | "low"
-    }
-  >
+  unitMetrics: Record<string, UnitMetric>
   monthlyEvolution: MonthlyData[]
   services: Record<string, ServiceData[]>
-  debtors: Debtor[]
+  criticality: CriticalityItem[]
 }

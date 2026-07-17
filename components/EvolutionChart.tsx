@@ -10,20 +10,22 @@ interface EvolutionChartProps {
 }
 
 export default function EvolutionChart({ selectedUnit }: EvolutionChartProps) {
-  const chartData = useMemo(() => {
-    return dashboardData.monthlyEvolution
-  }, [selectedUnit])
+  const chartData = useMemo(() => dashboardData.monthlyEvolution, [selectedUnit])
 
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h2>Evolução Mensal de Inadimplência</h2>
+        <h2>Evolução da INA acumulada</h2>
       </div>
       <ResponsiveContainer width="100%" height={300}>
         <LineChart data={chartData} margin={{ top: 5, right: 30, left: 0, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="#333333" />
           <XAxis dataKey="month" stroke="#808080" style={{ fontSize: 12 }} />
-          <YAxis stroke="#808080" style={{ fontSize: 12 }} />
+          <YAxis
+            stroke="#808080"
+            style={{ fontSize: 12 }}
+            tickFormatter={(value) => `${value}%`}
+          />
           <Tooltip
             contentStyle={{
               backgroundColor: "#252525",
@@ -31,33 +33,28 @@ export default function EvolutionChart({ selectedUnit }: EvolutionChartProps) {
               borderRadius: 8,
               color: "#e0e0e0",
             }}
+            formatter={(value) => `${Number(value).toLocaleString("pt-BR", {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}%`}
           />
           <Legend wrapperStyle={{ fontSize: 12 }} />
           <Line
             type="monotone"
-            dataKey="total"
-            stroke="#3b82f6"
-            name="Débito Total"
-            strokeWidth={2}
-            dot={{ fill: "#3b82f6", r: 4 }}
-            activeDot={{ r: 6 }}
-          />
-          <Line
-            type="monotone"
-            dataKey="paid"
-            stroke="#10b981"
-            name="Valor Pago"
-            strokeWidth={2}
-            dot={{ fill: "#10b981", r: 4 }}
-            activeDot={{ r: 6 }}
-          />
-          <Line
-            type="monotone"
-            dataKey="pending"
+            dataKey="ina"
             stroke="#ef4444"
-            name="Pendente"
+            name="INA acumulada"
             strokeWidth={2}
             dot={{ fill: "#ef4444", r: 4 }}
+            activeDot={{ r: 6 }}
+          />
+          <Line
+            type="monotone"
+            dataKey="meta"
+            stroke="#10b981"
+            name="Meta"
+            strokeWidth={2}
+            dot={{ fill: "#10b981", r: 4 }}
             activeDot={{ r: 6 }}
           />
         </LineChart>

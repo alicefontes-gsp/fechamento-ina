@@ -1,5 +1,6 @@
 "use client"
 
+import { dashboardData } from "@/data/dashboardData"
 import styles from "./Header.module.css"
 
 export default function Header() {
@@ -10,11 +11,11 @@ export default function Header() {
           <div className={styles.logoIcon}>📊</div>
           <div>
             <h1>Dashboard de Inadimplência</h1>
-            <p>Great Schools - Fechamento Mensal</p>
+            <p>Fechamento mensal acumulado · Great Schools</p>
           </div>
         </div>
         <div className={styles.info}>
-          <span className={styles.month}>Junho 2026</span>
+          <span className={styles.month}>{dashboardData.month} {dashboardData.year}</span>
         </div>
       </div>
     </header>
