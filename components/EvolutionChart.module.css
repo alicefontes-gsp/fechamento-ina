@@ -1,33 +1,36 @@
 .container {
-  background: linear-gradient(135deg, #252525 0%, #1f1f1f 100%);
-  border: 1px solid #333333;
-  border-radius: 12px;
-  padding: 24px;
-  transition: all 0.3s ease;
+  background: linear-gradient(180deg, rgba(30, 41, 59, 0.82), rgba(15, 23, 42, 0.84));
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  padding: 22px;
+  transition: all 0.22s ease;
+  box-shadow: var(--card-shadow);
+  backdrop-filter: blur(14px);
 }
 
 .container:hover {
-  border-color: #404040;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  border-color: rgba(148, 163, 184, 0.34);
+  transform: translateY(-2px);
 }
 
 .header {
-  margin-bottom: 20px;
+  margin-bottom: 12px;
 }
 
 .header h2 {
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 18px;
+  font-weight: 800;
   margin: 0;
-  color: #e0e0e0;
+  color: var(--text-primary);
 }
 
 @media (max-width: 768px) {
   .container {
     padding: 16px;
+    border-radius: 20px;
   }
 
   .header h2 {
-    font-size: 14px;
+    font-size: 16px;
   }
 }

@@ -10,7 +10,7 @@ import ServiceComposition from "@/components/ServiceComposition"
 import styles from "./page.module.css"
 
 export default function Home() {
-  const [selectedUnit, setSelectedUnit] = useState("all")
+  const [selectedUnit, setSelectedUnit] = useState("great-schools")
 
   return (
     <div className={styles.container}>
