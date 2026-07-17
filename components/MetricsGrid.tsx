@@ -41,11 +41,12 @@ export default function MetricsGrid({ selectedUnit }: MetricsGridProps) {
   return (
     <div className={styles.metricsGrid}>
       <MetricCard
-        title="INA atual"
+        title="Inadimplência atual (%)"
         value={formatPercent(metrics.inaPercent)}
-        detail={`Meta: ${formatPercent(metrics.metaPercent)}`}
-        icon="📊"
+        detail={`Meta 2026: ${formatPercent(metrics.metaPercent)}`}
+        badge={formatPp(metrics.distancePp)}
         accent={reachedGoal ? "secondary" : "danger"}
+        layout="ina"
       />
       <MetricCard
         title="Distância da meta"

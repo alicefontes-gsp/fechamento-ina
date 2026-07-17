@@ -6,21 +6,42 @@ interface MetricCardProps {
   title: string
   value: string
   detail?: string
-  icon: string
+  badge?: string
+  icon?: string
   accent: "primary" | "secondary" | "warning" | "info" | "danger"
+  layout?: "default" | "ina"
 }
 
 export default function MetricCard({
   title,
   value,
   detail,
+  badge,
   icon,
   accent,
+  layout = "default",
 }: MetricCardProps) {
+  if (layout === "ina") {
+    const isNegative = badge?.trim().startsWith("-")
+
+    return (
+      <div className={`${styles.card} ${styles.inaCard} ${styles[accent]}`}>
+        <h3 className={styles.title}>{title}</h3>
+        <div className={styles.value}>{value}</div>
+        {detail && <div className={styles.metaLine}>{detail}</div>}
+        {badge && (
+          <div className={`${styles.ppBadge} ${isNegative ? styles.ppBadgeGood : styles.ppBadgeBad}`}>
+            {badge}
+          </div>
+        )}
+      </div>
+    )
+  }
+
   return (
     <div className={`${styles.card} ${styles[accent]}`}>
       <div className={styles.header}>
-        <div className={styles.icon}>{icon}</div>
+        {icon && <div className={styles.icon}>{icon}</div>}
         {detail && <div className={styles.change}>{detail}</div>}
       </div>
       <h3 className={styles.title}>{title}</h3>
