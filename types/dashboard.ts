@@ -43,6 +43,8 @@ export interface CriticalityItem {
 export interface DashboardData {
   month: string
   year: number
+  cutoffDate: string
+  updateDate: string
   units: Unit[]
   unitMetrics: Record<string, UnitMetric>
   monthlyEvolution: MonthlyData[]

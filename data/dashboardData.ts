@@ -22,6 +22,8 @@ function services(values: Record<keyof typeof serviceNames, number>): ServiceDat
 export const dashboardData: DashboardData = {
   month: "Junho",
   year: 2026,
+  cutoffDate: "30/06/2026",
+  updateDate: "16/07/2026",
   units: [
     { id: "great-schools", name: "Great Schools Platform", shortName: "GSP" },
     { id: "santo-anjo", name: "Todas as unidades", shortName: "SANTO ANJO" },

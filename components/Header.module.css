@@ -41,7 +41,8 @@
 .logo p {
   font-size: 14px;
   color: var(--text-secondary);
-  margin: 7px 0 0 0;
+  margin: 8px 0 0 0;
+  font-weight: 600;
 }
 
 .info {
@@ -73,6 +74,7 @@
   }
 
   .logo p {
-    font-size: 13px;
+    font-size: 12px;
+    line-height: 1.35;
   }
 }

@@ -10,8 +10,10 @@ export default function Header() {
         <div className={styles.logo}>
           <div className={styles.logoIcon}>📊</div>
           <div>
-            <h1>Dashboard de Inadimplência</h1>
-            <p>Fechamento mensal acumulado · Great Schools</p>
+            <h1>Inadimplência Acumulada</h1>
+            <p>
+              Data de corte: {dashboardData.cutoffDate} / Data de atualização: {dashboardData.updateDate}
+            </p>
           </div>
         </div>
         <div className={styles.info}>
