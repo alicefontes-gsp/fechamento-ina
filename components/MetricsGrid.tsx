@@ -45,6 +45,8 @@ export default function MetricsGrid({ selectedUnit }: MetricsGridProps) {
         value={formatPercent(metrics.inaPercent)}
         detail={`Meta 2026: ${formatPercent(metrics.metaPercent)}`}
         badge={formatPp(metrics.distancePp)}
+        secondaryDetail={`INA 2025: ${formatPercent(metrics.ina2025Percent)}`}
+        secondaryBadge={formatPp(metrics.inaPercent - metrics.ina2025Percent)}
         accent={reachedGoal ? "secondary" : "danger"}
         layout="ina"
         statusLabel={reachedGoal ? "Meta atingida" : "Meta não atingida"}

@@ -21,6 +21,7 @@ export interface UnitMetric {
   inadimplencia: number
   inaPercent: number
   metaPercent: number
+  ina2025Percent: number
   distancePp: number
   distanceAmount: number
   rfCount: number

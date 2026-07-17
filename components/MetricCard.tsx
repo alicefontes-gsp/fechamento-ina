@@ -7,6 +7,8 @@ interface MetricCardProps {
   value: string
   detail?: string
   badge?: string
+  secondaryDetail?: string
+  secondaryBadge?: string
   icon?: string
   accent: "primary" | "secondary" | "warning" | "info" | "danger"
   layout?: "default" | "ina"
@@ -14,11 +16,17 @@ interface MetricCardProps {
   statusReached?: boolean
 }
 
+function badgeClass(value?: string) {
+  return value?.trim().startsWith("-") ? styles.ppBadgeGood : styles.ppBadgeBad
+}
+
 export default function MetricCard({
   title,
   value,
   detail,
   badge,
+  secondaryDetail,
+  secondaryBadge,
   icon,
   accent,
   layout = "default",
@@ -26,8 +34,6 @@ export default function MetricCard({
   statusReached = false,
 }: MetricCardProps) {
   if (layout === "ina") {
-    const isNegative = badge?.trim().startsWith("-")
-
     return (
       <div className={`${styles.card} ${styles.inaCard} ${styles[accent]}`}>
         {statusLabel && (
@@ -38,12 +44,18 @@ export default function MetricCard({
         )}
         <h3 className={styles.title}>{title}</h3>
         <div className={styles.value}>{value}</div>
-        {detail && <div className={styles.metaLine}>{detail}</div>}
-        {badge && (
-          <div className={`${styles.ppBadge} ${isNegative ? styles.ppBadgeGood : styles.ppBadgeBad}`}>
-            {badge}
+
+        <div className={styles.inaComparisons}>
+          <div className={styles.comparisonBlock}>
+            {detail && <div className={styles.metaLine}>{detail}</div>}
+            {badge && <div className={`${styles.ppBadge} ${badgeClass(badge)}`}>{badge}</div>}
           </div>
-        )}
+
+          <div className={`${styles.comparisonBlock} ${styles.comparisonRight}`}>
+            {secondaryDetail && <div className={styles.metaLine}>{secondaryDetail}</div>}
+            {secondaryBadge && <div className={`${styles.ppBadge} ${badgeClass(secondaryBadge)}`}>{secondaryBadge}</div>}
+          </div>
+        </div>
       </div>
     )
   }

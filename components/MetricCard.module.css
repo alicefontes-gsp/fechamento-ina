@@ -31,7 +31,7 @@
 
 .inaCard {
   padding: 20px 18px;
-  min-height: 184px;
+  min-height: 214px;
 }
 
 .statusMarker {
@@ -90,13 +90,32 @@
   letter-spacing: -0.05em;
 }
 
-.metaLine {
+.inaComparisons {
   position: relative;
   z-index: 1;
-  margin-top: 18px;
-  color: #b7c0d4;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.comparisonBlock {
+  min-width: 0;
+}
+
+.comparisonRight {
+  text-align: right;
+}
+
+.comparisonRight .ppBadge {
+  margin-left: auto;
+}
+
+.metaLine {
+  color: #d8dfec;
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 800;
+  white-space: nowrap;
 }
 
 .ppBadge {
@@ -105,7 +124,7 @@
   display: inline-flex;
   align-items: center;
   width: fit-content;
-  margin-top: 12px;
+  margin-top: 10px;
   padding: 8px 11px;
   border-radius: 999px;
   font-size: 13px;
@@ -199,6 +218,20 @@
 
   .inaCard .title {
     padding-right: 124px;
+  }
+
+  .inaComparisons {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .comparisonRight {
+    text-align: left;
+  }
+
+  .comparisonRight .ppBadge {
+    margin-left: 0;
   }
 
   .metaLine {
