@@ -53,13 +53,6 @@ export default function MetricsGrid({ selectedUnit }: MetricsGridProps) {
         statusReached={reachedGoal}
       />
       <MetricCard
-        title="Distância da meta"
-        value={formatPp(metrics.distancePp)}
-        detail={reachedGoal ? "Meta atingida" : "Acima da meta"}
-        icon={reachedGoal ? "🟢" : "🔴"}
-        accent={reachedGoal ? "secondary" : "warning"}
-      />
-      <MetricCard
         title="Inadimplência em R$"
         value={formatCurrency(metrics.inadimplencia)}
         detail="Valor acumulado"

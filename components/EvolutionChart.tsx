@@ -15,7 +15,7 @@ export default function EvolutionChart({ selectedUnit }: EvolutionChartProps) {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h2>Evolução da INA acumulada</h2>
+        <h2>EVOLUÇÃO DA INADIMPLÊNCIA</h2>
       </div>
       <ResponsiveContainer width="100%" height={300}>
         <LineChart data={chartData} margin={{ top: 5, right: 30, left: 0, bottom: 5 }}>
