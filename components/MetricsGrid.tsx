@@ -1,11 +1,12 @@
 "use client"
 
 import { useMemo } from "react"
-import { dashboardData } from "@/data/dashboardData"
+import { DashboardData } from "@/types/dashboard"
 import MetricCard from "./MetricCard"
 import styles from "./MetricsGrid.module.css"
 
 interface MetricsGridProps {
+  data: DashboardData
   selectedUnit: string
 }
 
@@ -31,8 +32,8 @@ function formatPp(value: number) {
   })} p.p.`
 }
 
-export default function MetricsGrid({ selectedUnit }: MetricsGridProps) {
-  const metrics = useMemo(() => dashboardData.unitMetrics[selectedUnit], [selectedUnit])
+export default function MetricsGrid({ data, selectedUnit }: MetricsGridProps) {
+  const metrics = useMemo(() => data.unitMetrics[selectedUnit], [data, selectedUnit])
 
   if (!metrics) return null
 

@@ -2,15 +2,16 @@
 
 import { useMemo } from "react"
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts"
-import { dashboardData } from "@/data/dashboardData"
+import { DashboardData } from "@/types/dashboard"
 import styles from "./EvolutionChart.module.css"
 
 interface EvolutionChartProps {
+  data: DashboardData
   selectedUnit: string
 }
 
-export default function EvolutionChart({ selectedUnit }: EvolutionChartProps) {
-  const chartData = useMemo(() => dashboardData.monthlyEvolution, [selectedUnit])
+export default function EvolutionChart({ data, selectedUnit }: EvolutionChartProps) {
+  const chartData = useMemo(() => data.monthlyEvolution, [data, selectedUnit])
 
   return (
     <div className={styles.container}>

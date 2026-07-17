@@ -1,10 +1,11 @@
 "use client"
 
 import { useMemo } from "react"
-import { dashboardData } from "@/data/dashboardData"
+import { DashboardData } from "@/types/dashboard"
 import styles from "./ServiceComposition.module.css"
 
 interface ServiceCompositionProps {
+  data: DashboardData
   selectedUnit: string
 }
 
@@ -15,18 +16,22 @@ const labelMap: Record<string, string> = {
   "Taxas, eventos e saídas": "Taxas, saídas e eventos",
 }
 
-export default function ServiceComposition({ selectedUnit }: ServiceCompositionProps) {
-  const listData = useMemo(() => {
-    const services = dashboardData.services[selectedUnit] || dashboardData.services["great-schools"]
+export default function ServiceComposition({ data, selectedUnit }: ServiceCompositionProps) {
+  const { listData, hasValues } = useMemo(() => {
+    const services = data.services[selectedUnit] || data.services["great-schools"]
+    const total = services.reduce((sum, item) => sum + item.amount, 0)
 
-    return LIST_ORDER.map((serviceName) => {
-      const item = services.find((s) => s.service === serviceName)
-      return {
-        service: labelMap[serviceName] || serviceName,
-        percentage: item?.percentage || 0,
-      }
-    })
-  }, [selectedUnit])
+    return {
+      hasValues: total > 0,
+      listData: LIST_ORDER.map((serviceName) => {
+        const item = services.find((s) => s.service === serviceName)
+        return {
+          service: labelMap[serviceName] || serviceName,
+          percentage: item?.percentage || 0,
+        }
+      }),
+    }
+  }, [data, selectedUnit])
 
   return (
     <section className={styles.container} aria-label="Composição da inadimplência por tipo de serviço">
@@ -37,10 +42,11 @@ export default function ServiceComposition({ selectedUnit }: ServiceCompositionP
         {listData.map((item) => (
           <div className={styles.metricRow} key={item.service}>
             <span>{item.service}</span>
-            <strong>{Math.round(item.percentage)}%</strong>
+            <strong>{hasValues ? `${Math.round(item.percentage)}%` : "—"}</strong>
           </div>
         ))}
       </div>
+      {!hasValues && <p className={styles.pendingNote}>Aguardando dados de composição por serviço deste mês.</p>}
     </section>
   )
 }
