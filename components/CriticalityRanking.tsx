@@ -58,7 +58,6 @@ export default function CriticalityRanking({ data, selectedUnit }: CriticalityRa
         <table className={styles.table}>
           <thead>
             <tr>
-              <th>Unidade</th>
               <th>INA Total</th>
               <th>QT. RF</th>
               <th>Acordo</th>
@@ -72,7 +71,6 @@ export default function CriticalityRanking({ data, selectedUnit }: CriticalityRa
           <tbody>
             {rows.map((row) => (
               <tr key={row.id}>
-                <td className={styles.unitName}>{row.unit}</td>
                 <td className={styles.amount}>{formatCurrency(row.metrics.inadimplencia)}</td>
                 <td>{row.metrics.rfCount.toLocaleString("pt-BR")}</td>
                 {SERVICE_COLUMNS.map((service) => (
@@ -84,7 +82,7 @@ export default function CriticalityRanking({ data, selectedUnit }: CriticalityRa
             ))}
             {rows.length === 0 && (
               <tr>
-                <td colSpan={9}>Nenhuma unidade disponível para o mês selecionado.</td>
+                <td colSpan={8}>Nenhuma unidade disponível para o mês selecionado.</td>
               </tr>
             )}
           </tbody>
