@@ -1,7 +1,7 @@
 "use client"
 
 import { useMemo } from "react"
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts"
+import { Bar, BarChart, Cell, LabelList, ResponsiveContainer, XAxis, YAxis } from "recharts"
 import { dashboardData } from "@/data/dashboardData"
 import styles from "./EvolutionChart.module.css"
 
@@ -9,56 +9,71 @@ interface EvolutionChartProps {
   selectedUnit: string
 }
 
+function formatPercent(value: number) {
+  return `${value.toLocaleString("pt-BR", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })}%`
+}
+
 export default function EvolutionChart({ selectedUnit }: EvolutionChartProps) {
-  const chartData = useMemo(() => dashboardData.monthlyEvolution, [selectedUnit])
+  const { chartData, unitName, meta } = useMemo(() => {
+    const unit = dashboardData.units.find((item) => item.id === selectedUnit) || dashboardData.units[0]
+    const data = dashboardData.monthlyEvolutionByUnit[selectedUnit] || dashboardData.monthlyEvolutionByUnit["great-schools"]
+    const metric = dashboardData.unitMetrics[selectedUnit] || dashboardData.unitMetrics["great-schools"]
+
+    return {
+      chartData: data,
+      unitName: unit.shortName || unit.name,
+      meta: metric.metaPercent,
+    }
+  }, [selectedUnit])
+
+  const maxValue = Math.max(...chartData.map((item) => item.ina), meta, 1)
 
   return (
-    <div className={styles.container}>
+    <section className={styles.container} aria-label="Evolução mensal da inadimplência">
       <div className={styles.header}>
-        <h2>Evolução da INA acumulada</h2>
+        <div>
+          <p className={styles.eyebrow}>Evolução mensal</p>
+          <h2>Resultado vs meta 2026 · {unitName}</h2>
+        </div>
+        <strong className={styles.meta}>Meta: {formatPercent(meta)}</strong>
       </div>
-      <ResponsiveContainer width="100%" height={300}>
-        <LineChart data={chartData} margin={{ top: 5, right: 30, left: 0, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#333333" />
-          <XAxis dataKey="month" stroke="#808080" style={{ fontSize: 12 }} />
-          <YAxis
-            stroke="#808080"
-            style={{ fontSize: 12 }}
-            tickFormatter={(value) => `${value}%`}
-          />
-          <Tooltip
-            contentStyle={{
-              backgroundColor: "#252525",
-              border: "1px solid #333333",
-              borderRadius: 8,
-              color: "#e0e0e0",
-            }}
-            formatter={(value) => `${Number(value).toLocaleString("pt-BR", {
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
-            })}%`}
-          />
-          <Legend wrapperStyle={{ fontSize: 12 }} />
-          <Line
-            type="monotone"
-            dataKey="ina"
-            stroke="#ef4444"
-            name="INA acumulada"
-            strokeWidth={2}
-            dot={{ fill: "#ef4444", r: 4 }}
-            activeDot={{ r: 6 }}
-          />
-          <Line
-            type="monotone"
-            dataKey="meta"
-            stroke="#10b981"
-            name="Meta"
-            strokeWidth={2}
-            dot={{ fill: "#10b981", r: 4 }}
-            activeDot={{ r: 6 }}
-          />
-        </LineChart>
-      </ResponsiveContainer>
-    </div>
+
+      <div className={styles.chartArea}>
+        <ResponsiveContainer width="100%" height={280}>
+          <BarChart data={chartData} margin={{ top: 34, right: 10, left: 0, bottom: 4 }} barCategoryGap="32%">
+            <defs>
+              <linearGradient id="inaBarGradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#38bdf8" />
+                <stop offset="48%" stopColor="#60a5fa" />
+                <stop offset="100%" stopColor="#8b5cf6" />
+              </linearGradient>
+            </defs>
+            <XAxis
+              dataKey="month"
+              axisLine={{ stroke: "rgba(148, 163, 184, 0.18)" }}
+              tickLine={false}
+              tick={{ fill: "#a7b0c3", fontSize: 13, fontWeight: 600 }}
+              dy={8}
+            />
+            <YAxis domain={[0, Math.ceil(maxValue + 2)]} hide />
+            <Bar dataKey="ina" radius={[14, 14, 0, 0]} maxBarSize={116}>
+              {chartData.map((entry) => (
+                <Cell key={entry.month} fill="url(#inaBarGradient)" />
+              ))}
+              <LabelList
+                dataKey="ina"
+                position="top"
+                offset={8}
+                formatter={(value: number) => formatPercent(value)}
+                className={styles.barLabel}
+              />
+            </Bar>
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+    </section>
   )
 }

@@ -7,7 +7,7 @@ export interface Unit {
 export interface MonthlyData {
   month: string
   ina: number
-  meta: number
+  meta?: number
 }
 
 export interface ServiceData {
@@ -46,6 +46,7 @@ export interface DashboardData {
   units: Unit[]
   unitMetrics: Record<string, UnitMetric>
   monthlyEvolution: MonthlyData[]
+  monthlyEvolutionByUnit: Record<string, MonthlyData[]>
   services: Record<string, ServiceData[]>
   criticality: CriticalityItem[]
 }
