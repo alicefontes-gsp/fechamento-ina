@@ -1,0 +1,135 @@
+.tableSection {
+  background: #f7fafc;
+  padding: 25px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.tableSection h3 {
+  margin-bottom: 20px;
+  color: #2d3748;
+}
+
+.emptyMessage {
+  text-align: center;
+  color: #718096;
+  padding: 40px 20px;
+  font-style: italic;
+}
+
+.tableWrapper {
+  overflow-x: auto;
+  border-radius: 8px;
+  background: white;
+  margin-bottom: 20px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table thead {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.table th {
+  padding: 16px;
+  font-weight: 600;
+  text-align: left;
+  border: none;
+}
+
+.table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.table tbody tr {
+  transition: all 0.3s ease;
+}
+
+.table tbody tr:hover {
+  background: #f7fafc;
+}
+
+.rowPaid {
+  border-left: 4px solid #48bb78;
+}
+
+.rowPending {
+  border-left: 4px solid #f56565;
+}
+
+.valor {
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.badgePaid {
+  background: #c6f6d5;
+  color: #22543d;
+}
+
+.badgePending {
+  background: #fed7d7;
+  color: #742a2a;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.pageInfo {
+  color: #2d3748;
+  font-weight: 600;
+}
+
+.summary {
+  text-align: right;
+  color: #718096;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.summary p {
+  margin: 4px 0;
+}
+
+.summary strong {
+  color: #2d3748;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .table {
+    font-size: 13px;
+  }
+
+  .table th,
+  .table td {
+    padding: 10px;
+  }
+
+  .pagination {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .pagination button {
+    width: 100%;
+  }
+}

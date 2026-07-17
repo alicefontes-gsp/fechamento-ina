@@ -1,0 +1,36 @@
+.uploadForm {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.inputGroup {
+  margin-bottom: 20px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #2d3748;
+  font-size: 16px;
+}
+
+.fileName {
+  margin-top: 8px;
+  color: #38a169;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.error {
+  background: #fed7d7;
+  color: #c53030;
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin-top: 16px;
+  border-left: 4px solid #c53030;
+  font-size: 14px;
+}
