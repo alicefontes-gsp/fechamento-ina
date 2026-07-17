@@ -38,6 +38,7 @@ export default function MetricsGrid({ data, selectedUnit }: MetricsGridProps) {
   if (!metrics) return null
 
   const reachedGoal = metrics.distancePp <= 0
+  const monthShort = data.month === "Maio" ? "Mai" : data.month === "Junho" ? "Jun" : data.month.slice(0, 3)
 
   return (
     <div className={styles.metricsGrid}>
@@ -63,7 +64,7 @@ export default function MetricsGrid({ data, selectedUnit }: MetricsGridProps) {
       <MetricCard
         title="Faturamento acumulado"
         value={formatCurrency(metrics.faturamento)}
-        detail="Jan a Jun/2026"
+        detail={`Jan a ${monthShort}/${data.year}`}
         icon="📈"
         accent="info"
       />
