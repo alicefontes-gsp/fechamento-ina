@@ -16,10 +16,6 @@ const labelMap: Record<string, string> = {
 }
 
 export default function ServiceComposition({ selectedUnit }: ServiceCompositionProps) {
-  const selectedUnitName = useMemo(() => {
-    return dashboardData.units.find((unit) => unit.id === selectedUnit)?.name || "Great Schools"
-  }, [selectedUnit])
-
   const listData = useMemo(() => {
     const services = dashboardData.services[selectedUnit] || dashboardData.services["great-schools"]
 
@@ -35,7 +31,7 @@ export default function ServiceComposition({ selectedUnit }: ServiceCompositionP
   return (
     <section className={styles.container} aria-label="Composição da inadimplência por tipo de serviço">
       <p className={styles.eyebrow}>Composição da inadimplência</p>
-      <h2 className={styles.title}>Por tipo de serviço · {selectedUnitName}</h2>
+      <h2 className={styles.title}>Por tipo de serviço</h2>
 
       <div className={styles.metricList}>
         {listData.map((item) => (

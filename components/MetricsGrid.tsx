@@ -69,9 +69,9 @@ export default function MetricsGrid({ selectedUnit }: MetricsGridProps) {
         accent="info"
       />
       <MetricCard
-        title="QT. RF"
+        title="Total de inadimplentes"
         value={metrics.rfCount.toLocaleString("pt-BR")}
-        detail="Responsáveis financeiros"
+        detail="Responsáveis financeiros únicos"
         icon="👥"
         accent="primary"
       />
