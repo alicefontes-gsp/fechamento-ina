@@ -1,4 +1,5 @@
 import { ReactNode } from "react"
+import "./globals.css"
 
 export const metadata = {
   title: "Dashboard de Inadimplência - Great Schools",
