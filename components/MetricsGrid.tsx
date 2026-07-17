@@ -47,6 +47,8 @@ export default function MetricsGrid({ selectedUnit }: MetricsGridProps) {
         badge={formatPp(metrics.distancePp)}
         accent={reachedGoal ? "secondary" : "danger"}
         layout="ina"
+        statusLabel={reachedGoal ? "Meta atingida" : "Meta não atingida"}
+        statusReached={reachedGoal}
       />
       <MetricCard
         title="Distância da meta"
