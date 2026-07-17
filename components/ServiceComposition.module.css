@@ -1,49 +1,28 @@
 .container {
-  background: linear-gradient(180deg, rgba(30, 41, 59, 0.82), rgba(15, 23, 42, 0.84));
-  border: 1px solid var(--border-color);
-  border-radius: 24px;
-  padding: 22px;
-  transition: all 0.22s ease;
-  box-shadow: var(--card-shadow);
-  backdrop-filter: blur(14px);
+  background: #0f1426;
+  border: 1px solid rgba(148, 163, 184, 0.08);
+  border-radius: 16px;
+  padding: 10px 2px 0;
+  box-shadow: none;
 }
 
-.container:hover {
-  border-color: rgba(148, 163, 184, 0.34);
-  transform: translateY(-2px);
-}
-
-.header {
-  margin-bottom: 16px;
-}
-
-.header span {
-  display: block;
-  margin-bottom: 8px;
-  color: #67e8f9;
-  font-size: 12px;
+.eyebrow {
+  margin: 0 0 10px;
+  color: #45a9d8;
+  font-size: 14px;
   font-weight: 900;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
+  line-height: 1;
   text-transform: uppercase;
 }
 
-.header h2 {
-  font-size: clamp(18px, 2vw, 24px);
-  line-height: 1.12;
-  font-weight: 850;
-  margin: 0;
-  color: var(--text-primary);
-}
-
-.contentGrid {
-  display: grid;
-  grid-template-columns: minmax(180px, 0.9fr) minmax(220px, 1.1fr);
-  gap: 18px;
-  align-items: center;
-}
-
-.chartBox {
-  min-width: 0;
+.title {
+  margin: 0 0 22px;
+  color: #f8fafc;
+  font-size: clamp(22px, 2.2vw, 26px);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
 }
 
 .metricList {
@@ -53,57 +32,57 @@
 }
 
 .metricRow {
+  min-height: 49px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
-  padding: 15px 16px;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.065);
-  border: 1px solid rgba(148, 163, 184, 0.10);
-  color: var(--text-secondary);
+  gap: 20px;
+  padding: 0 14px 0 17px;
+  border-radius: 15px;
+  background: #1c2235;
+  color: #c7cfdd;
 }
 
 .metricRow span {
-  font-size: 15px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2;
 }
 
 .metricRow strong {
-  color: var(--text-primary);
-  font-size: 16px;
+  color: #ffffff;
+  font-size: 17px;
   font-weight: 900;
+  line-height: 1;
   white-space: nowrap;
-}
-
-@media (max-width: 980px) {
-  .contentGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .chartBox {
-    max-width: 420px;
-    width: 100%;
-    margin: 0 auto;
-  }
 }
 
 @media (max-width: 768px) {
   .container {
-    padding: 16px;
-    border-radius: 20px;
+    padding-top: 6px;
   }
 
-  .header h2 {
-    font-size: 18px;
+  .eyebrow {
+    font-size: 12px;
+    margin-bottom: 9px;
+  }
+
+  .title {
+    font-size: 21px;
+    margin-bottom: 18px;
   }
 
   .metricRow {
-    padding: 13px 14px;
+    min-height: 48px;
+    padding-left: 15px;
+    padding-right: 12px;
   }
 
-  .metricRow span,
+  .metricRow span {
+    font-size: 15px;
+  }
+
   .metricRow strong {
-    font-size: 14px;
+    font-size: 16px;
   }
 }
